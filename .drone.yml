@@ -22,9 +22,11 @@ pipeline:
   prepare-integration-test:
     image: plugins/git
     commands:
-      - git branch -D MERGED_STATE || true
-      - git fetch origin pull/$CI_PULL_REQUEST/head:MERGED_STATE
-      - git checkout MERGED_STATE
+      - git branch -D merged_state || true
+      - git fetch origin pull/$CI_PULL_REQUEST/head:merged_state
+      - git checkout $DRONE_BRANCH
+      - git pull origin $DRONE_BRANCH
+      - git merge --no-ff merged_state
       - git log -2
   start-integration-test:
     image: node:8.1.2
