@@ -19,7 +19,8 @@ pipeline:
     image: node:8.1.2
     commands:
       - yarn test
-  integration-test:
+  integration-test-prepare:
+    parallel: false
     prepare:
       image: plugins/git
       commands:
