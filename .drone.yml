@@ -5,6 +5,12 @@ pipeline:
     commands:
       - npm install --global yarn
       - yarn install
+  check-git-logs:
+    image: plugins/git
+    commands:
+      - git log -5 > git-logs.txt
+      - cat git-logs.txt
+      - rm git-logs.txt
   print-drone-vars:
     image: node:8.1.2
     commands:
