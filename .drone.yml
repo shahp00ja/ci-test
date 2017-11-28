@@ -5,7 +5,14 @@ pipeline:
     commands:
       - npm install --global yarn
       - yarn install
-  test:
+  print-drone-vars:
+    commands:
+      - yarn drone-vars
+  unit-test:
     image: node:8.1.2
     commands:
       - yarn test
+  integration-test:
+    image: git
+    commands:
+      - git fetch origin $BRANCH_NAME
