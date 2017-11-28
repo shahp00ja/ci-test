@@ -19,7 +19,12 @@ pipeline:
     image: node:8.1.2
     commands:
       - yarn test
-  # integration-test:
-  #   image: git
-  #   commands:
-  #     - git fetch origin $BRANCH_NAME
+  integration-test:
+    image: plugins/git
+    commands:
+      - git branch -D MERGED_STATE || true
+      - git fetch origin pull/$CI_PULL_REQUEST/head:MERGED_STATE
+      - git checkout MERGED_STATE
+    image: node:8.1.2
+    commands:
+      - yarn test
