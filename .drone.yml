@@ -1,10 +1,10 @@
 branches: [ dev, qa, master ]
 pipeline:
-  # install:
-  #   image: node:8.1.2
-  #   commands:
-  #     - npm install --global yarn
-  #     - yarn install
+  install:
+    image: node:8.1.2
+    commands:
+      - npm install --global yarn
+      - yarn install
   check-git-logs:
     image: plugins/git
     commands:
