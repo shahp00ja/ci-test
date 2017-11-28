@@ -1,0 +1,15 @@
+{
+  "name": "drone-test",
+  "version": "1.0.0",
+  "description": "Test for Drone CI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "Sidhant Panda",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
