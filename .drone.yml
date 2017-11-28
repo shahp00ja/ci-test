@@ -6,6 +6,7 @@ pipeline:
       - npm install --global yarn
       - yarn install
   print-drone-vars:
+    image: node:8.1.2
     commands:
       - yarn drone-vars
   unit-test:
