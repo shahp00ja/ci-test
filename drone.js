@@ -15,7 +15,7 @@ for (let key of DRONE_VARS) {
     console.log('Value of', key, ':', process.env[key]);
 }
 
-console.log('\n\nPrinting all env vars:');
+console.log('\n\nPRINT ALL ENV VARS\n');
 
 for(let key in process.env) {
     if (process.env.hasOwnProperty(key)) {
