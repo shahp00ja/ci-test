@@ -22,6 +22,8 @@ pipeline:
   prepare-integration-test:
     image: plugins/git
     commands:
+      - git config --global user.email "drone-bot@moengage.com"
+      - git config --global user.name "Drone CI"
       - git branch -D merged_state || true
       - git fetch origin pull/$CI_PULL_REQUEST/head:merged_state
       - git fetch origin $DRONE_BRANCH
