@@ -1,0 +1,11 @@
+branches: [ dev, qa, master ]
+pipeling:
+  install:
+    image: node:8.1.2
+    commands:
+      - npm install --global yarn
+      - yarn install
+  test:
+    image: node:8.1.2
+    commands:
+      - yarn test
