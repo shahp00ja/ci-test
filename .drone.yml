@@ -13,7 +13,7 @@ pipeline:
     image: node:8.1.2
     commands:
       - yarn test
-  integration-test:
-    image: git
-    commands:
-      - git fetch origin $BRANCH_NAME
+  # integration-test:
+  #   image: git
+  #   commands:
+  #     - git fetch origin $BRANCH_NAME

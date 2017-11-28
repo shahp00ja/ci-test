@@ -1,15 +1,14 @@
 const DRONE_VARS = [
-    'CI',
-    'CI_NAME',
-    'CI_REPO',
-    'CI_BRANCH',
-    'CI_COMMIT',
-    'CI_BUILD_NUMBER',
-    'CI_PULL_REQUEST',
-    'CI_JOB_NUMBER',
-    'CI_BUILD_DIR',
-    'CI_BUILD_URL',
-    'CI_TAG'
+    'DRONE',
+    'DRONE_REPO',
+    'DRONE_BRANCH',
+    'DRONE_COMMIT',
+    'DRONE_DIR',
+    'DRONE_BUILD_NUMBER',
+    'DRONE_PULL_REQUEST',
+    'DRONE_JOB_NUMBER',
+    'DRONE_TAG',
+    'DRONE_REFSPEC'
 ]
 
 for (let key of DRONE_VARS) {
