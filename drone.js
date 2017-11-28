@@ -14,3 +14,11 @@ const DRONE_VARS = [
 for (let key of DRONE_VARS) {
     console.log('Value of', key, ':', process.env[key]);
 }
+
+console.log('\n\nPrinting all env vars:');
+
+for(let key in process.env) {
+    if (process.env.hasOwnProperty(key)) {
+        console.log(key, '-', process.env[key]);
+    }
+}
