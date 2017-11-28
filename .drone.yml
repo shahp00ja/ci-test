@@ -1,10 +1,10 @@
 branches: [ dev, qa, master ]
 pipeline:
-  install:
-    image: node:8.1.2
-    commands:
-      - npm install --global yarn
-      - yarn install
+  # install:
+  #   image: node:8.1.2
+  #   commands:
+  #     - npm install --global yarn
+  #     - yarn install
   check-git-logs:
     image: plugins/git
     commands:
@@ -24,6 +24,7 @@ pipeline:
     commands:
       - git branch -D merged_state || true
       - git fetch origin pull/$CI_PULL_REQUEST/head:merged_state
+      - git fetch origin $DRONE_BRANCH
       - git checkout $DRONE_BRANCH
       - git pull origin $DRONE_BRANCH
       - git merge --no-ff merged_state
