@@ -1,5 +1,5 @@
 branches: [ dev, qa, master ]
-pipeling:
+pipeline:
   install:
     image: node:8.1.2
     commands:
