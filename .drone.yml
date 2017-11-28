@@ -20,11 +20,14 @@ pipeline:
     commands:
       - yarn test
   integration-test:
-    image: plugins/git
-    commands:
-      - git branch -D MERGED_STATE || true
-      - git fetch origin pull/$CI_PULL_REQUEST/head:MERGED_STATE
-      - git checkout MERGED_STATE
-    image: node:8.1.2
-    commands:
-      - yarn test
+    prepare:
+      image: plugins/git
+      commands:
+        - git branch -D MERGED_STATE || true
+        - git fetch origin pull/$CI_PULL_REQUEST/head:MERGED_STATE
+        - git checkout MERGED_STATE
+        - git log -2
+    test:
+      image: node:8.1.2
+      commands:
+        - yarn test
