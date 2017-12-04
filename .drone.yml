@@ -23,6 +23,7 @@ pipeline:
     image: plugins/git
     commands:
       - export REPO=someVal
+      - echo $REPO
   read-env-var:
     image: plugins/git
     commands:
