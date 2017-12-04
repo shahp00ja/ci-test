@@ -12,5 +12,8 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "shelljs": "^0.7.8"
   }
 }
