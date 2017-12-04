@@ -28,6 +28,7 @@ pipeline:
     image: plugins/git
     commands:
       - echo $REPO
+      - echo {{ repo.owner }} {{ repo.name }}
   unit-test:
     image: node:8.1.2
     commands:
