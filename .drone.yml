@@ -5,30 +5,6 @@ pipeline:
     commands:
       - npm install --global yarn
       - yarn install
-  check-git-logs:
-    image: plugins/git
-    commands:
-      - git log -5 > git-logs.txt
-      - cat git-logs.txt
-      - rm git-logs.txt
-  print-drone-vars:
-    image: node:8.1.2
-    commands:
-      - yarn drone-vars
-  fetch-latest-code:
-    image: plugins/git
-    commands:
-      - git fetch origin
-  expose-env-var:
-    image: plugins/git
-    commands:
-      - export REPO=someVal
-      - echo $REPO
-  read-env-var:
-    image: plugins/git
-    commands:
-      - echo $REPO
-      - echo {{ repo.owner }} {{ repo.name }}
   unit-test:
     image: node:8.1.2
     commands:
