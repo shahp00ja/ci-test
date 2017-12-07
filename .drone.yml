@@ -29,14 +29,14 @@ pipeline:
     image: node:8.1.2
     commands:
       - cat dev-only_file
-  notify:
-    image: plugins/slack    
-    secrets: [ slack_webhook ]
-    when:
-      status: [ success, failure ]
-    template: >
-      {{#success build.status}}
-        {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build succeeded on {{uppercasefirst build.event}}. Good job {{ build.author }}.
-      {{else}}
-        {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build failed on {{uppercasefirst build.event}}. Fix me please {{ build.author }}.
-      {{/success}}
+  # notify:
+  #   image: plugins/slack    
+  #   secrets: [ slack_webhook ]
+  #   when:
+  #     status: [ success, failure ]
+  #   template: >
+  #     {{#success build.status}}
+  #       {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build succeeded on {{uppercasefirst build.event}}. Good job {{ build.author }}.
+  #     {{else}}
+  #       {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build failed on {{uppercasefirst build.event}}. Fix me please {{ build.author }}.
+  #     {{/success}}
