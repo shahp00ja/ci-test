@@ -11,6 +11,8 @@ const DRONE_VARS = [
     'DRONE_REFSPEC'
 ]
 
+console.log('Logging drone variables');
+
 for (let key of DRONE_VARS) {
     console.log('Value of', key, ':', process.env[key]);
 }
