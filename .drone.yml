@@ -25,10 +25,10 @@ pipeline:
     image: node:8.1.2
     commands:
       - yarn test
-  check-dev-file:
-    image: node:8.1.2
-    commands:
-      - cat dev-only_file
+  # check-dev-file:
+  #   image: node:8.1.2
+  #   commands:
+  #     - cat dev-only_file
   # notify:
   #   image: plugins/slack    
   #   secrets: [ slack_webhook ]
