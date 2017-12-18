@@ -1,16 +1,19 @@
-branches: [ dev, qa, master ]
+branches: [ dev, qa, master]
 pipeline:
   install:
     image: node:8.1.2
     commands:
       - npm install --global yarn
       - yarn install
-  unit-test:
+  test:
     image: node:8.1.2
     commands:
       - yarn test
-  prepare-integration-test:
-    image: plugins/git
+  integration-test:
+    image: node:8.1.2
+    when:
+      branch: [ dev ]
+      event: pull_request
     commands:
       - git config --global user.email "drone-bot@moengage.com"
       - git config --global user.name "Drone CI"
@@ -21,18 +24,15 @@ pipeline:
       - git pull origin $DRONE_BRANCH
       - git merge --no-ff merged_state
       - git log -2
-  start-integration-test:
-    image: node:8.1.2
-    commands:
       - yarn test
-  # notify:
-  #   image: plugins/slack    
-  #   secrets: [ slack_webhook ]
-  #   when:
-  #     status: [ success, failure ]
-  #   template: >
-  #     {{#success build.status}}
-  #       {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build succeeded on {{uppercasefirst build.event}}. Good job {{ build.author }}.
-  #     {{else}}
-  #       {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build failed on {{uppercasefirst build.event}}. Fix me please {{ build.author }}.
-  #     {{/success}}
+  notify-build-status:
+    image: plugins/slack
+    secrets: [ slack_webhook ]
+    when:
+      status: [ success, failure ]
+    template: >
+      {{#success build.status}}
+        {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build succeeded on {{uppercasefirst build.event}}. Good job {{ build.author }}.
+      {{else}}
+        {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build failed on {{uppercasefirst build.event}}. Fix me please {{ build.author }}.
+      {{/success}}
