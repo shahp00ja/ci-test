@@ -7,7 +7,7 @@ pipeline:
       - git config --global user.email "drone-bot@moengage.com"
       - git config --global user.name "Drone CI"
       - git init
-      - git remote add origin https://github.com/moengage/ci-test.git
+      - git remote add origin https://github.com/moengage/ci-test.git || true
       - sleep 5
       - git fetch --no-tags origin pull/$DRONE_PULL_REQUEST/merge
   install:
