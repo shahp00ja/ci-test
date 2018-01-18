@@ -10,6 +10,8 @@ clone:
       - git remote add origin https://github.com/moengage/ci-test.git || true
       - sleep 5
       - git fetch --no-tags origin +refs/pull/$DRONE_PULL_REQUEST/merge
+      - git checkout -qf FETCH_HEAD
+      - git submodule update --init --recursive
 pipeline:
   install:
     image: node:8.1.2
