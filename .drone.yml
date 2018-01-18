@@ -9,7 +9,7 @@ clone:
       - git init
       - git remote add origin https://github.com/moengage/ci-test.git || true
       - sleep 5
-      - git fetch --no-tags origin pull/$DRONE_PULL_REQUEST/merge
+      - git fetch --no-tags origin +refs/pull/$DRONE_PULL_REQUEST/merge
 pipeline:
   install:
     image: node:8.1.2
