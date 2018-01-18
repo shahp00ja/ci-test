@@ -16,9 +16,11 @@ pipeline:
     commands:
       - npm install --global yarn
       - yarn install
+      - ls -a
   test:
     image: node:8.1.2
     commands:
+      - ls -a
       - yarn test
   # integration-test:
   #   image: node:8.1.2
